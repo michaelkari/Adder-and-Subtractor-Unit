@@ -1,0 +1,32 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY ASU IS
+	PORT (
+		Cin 				: IN  STD_LOGIC;
+		X, Y				: IN  STD_LOGIC_VECTOR(3 DOWNTO 0);
+		s					: OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+		Cout           : OUT STD_LOGIC);
+END ASU;
+		
+ARCHITECTURE Behaviour OF ASU IS
+	
+	SIGNAL sum : STD_LOGIC_VECTOR (4 DOWNTO 0);
+	
+BEGIN
+	PROCESS (X, Y, Cin)
+	BEGIN
+		
+			sum <= Y XOR Cin + X;
+			s <= sum(3 DOWNTO 0);
+
+			IF (X<Y) THEN
+				sum <= NOT (sum)+1;
+			ELSE	
+			END IF;
+			s <= sum(3 DOWNTO 0);
+			Cout <= sum(4);
+			
+		END PROCESS;
+	END Behaviour;				
